@@ -1,38 +1,38 @@
-<h2>Sign up</h2>
+<h2>Registro de Cuenta</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+    <%= f.label 'Nombre de Usuario' %>
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: 'Ingrese su nombre' %>
   </div>
   
   <div class="field">
-    <%= f.label :profile_picture %><br />
+    <%= f.label 'Foto de Perfil' %>
     <%= f.text_field :profile_picture, autofocus: true, autocomplete: "profile_picture" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Ingrese su email' %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label 'Contraseña' %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(Mínimo <%= @minimum_password_length %> carácteres)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Ingrese su contraseña' %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label 'Reingrese su contraseña' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Ingrese su contraseña' %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Crear Cuenta" %>
   </div>
 <% end %>
 
