@@ -19,7 +19,7 @@
   </thead>
 
   <tbody>
-    <% @tweets.each do |tweet| %>
+    <% @tweets.reverse.each do |tweet| %>
       <tr>
         <td><img src="<%= tweet.user.profile_picture %>" style="width:50px; height:50px"></td>
         <td><%= tweet.content %></td>

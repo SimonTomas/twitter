@@ -13,19 +13,6 @@ class TweetsController < ApplicationController
   def show
   end
 
-  def retweet
-    original_tweet = Tweet.find(params[:id])
-    @retweet = Tweet.new(
-      user_id: current_user.id,
-      content: original_tweet.content
-    )
-      if @retweet.save
-        redirect_to tweet_path, notice: 'Retwitteado'
-      else
-        redirect_to root_path, alert: 'No se pudo retwittear'
-      end
-  end
-
   # GET /tweets/new
   def new
     @tweet = Tweet.new
@@ -67,6 +54,19 @@ class TweetsController < ApplicationController
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def retweet
+    original_tweet = Tweet.find(params[:id])
+    @retweet = Tweet.new(
+      user_id: current_user.id,
+      content: original_tweet.content
+    )
+      if @retweet.save
+        redirect_to tweet_path, notice: 'Retwitteado'
+      else
+        redirect_to root_path, alert: 'No se pudo retwittear'
+      end
   end
 
   # DELETE /tweets/1
