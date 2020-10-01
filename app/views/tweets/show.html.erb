@@ -1,12 +1,7 @@
-<p>
-  <strong>Contenido:</strong>
-  <%= @tweet.content %>
-</p>
-
 <h3>Likes</h3>
 <p>
   <% @tweet.likes.each do |like| %>
-  <img src="<%= like.user.profile_picture %>", style="width:40px; height:40px">
+    <img src="<%= like.user.profile_picture %>", style="width:60px; height:60px">
   <% end %>
 </p>
 

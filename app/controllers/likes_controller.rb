@@ -3,8 +3,12 @@ class LikesController < ApplicationController
     before_action :find_like, only: [:destroy]
 
     def create
-        @tweet.likes.create(user_id: current_user.id)
-        redirect_to root_path
+        if user_signed_in?
+            @tweet.likes.create(user_id: current_user.id)
+            redirect_to root_path
+        else
+            redirect_to root_path, alert: 'Para dar Like, debes iniciar sesión.'
+        end
     end
 
     def destroy
