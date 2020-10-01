@@ -1,43 +1,47 @@
 <% if user_signed_in? %>
+  <%= link_to 'Nuevo Tweet', new_tweet_path %>
   <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to 'Crear Cuenta', new_user_registration_path %>
   <%= link_to 'Iniciar Sesión', new_user_session_path %>
 <% end %>
 
-<h1>Tweets</h1>
+<h1 class="text-center">Tweets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Foto del Usuario</th>
-      <th>Tweet</th>
-      <th>Likes</th>
-      <th>Retweets</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><img src="<%= tweet.user.profile_picture %>" style="width:50px; height:50px"></td>
-        <td><%= tweet.content %></td>
-        <td><%= tweet.likes.count %></td>
-        <td><%= tweet.likes.count %></td>
-        <td><%= link_to 'RT', tweet %></td>
-        <td><%= link_to 'Mostrar', tweet %></td>
-        <% if user_signed_in? && tweet.user_id == current_user.id %>
-          <td><%= link_to 'Editar', edit_tweet_path(tweet) %></td>
-          <td><%= link_to 'Borrar', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% @tweets.each do |tweet| %>
+  <div class="row d-flex justify-content-center my-3">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <figure class="d-flex align-items-center">
+            <img src="<%= tweet.user.profile_picture %>" style="width:60px; height:60px; border-radius:50%">
+            <figcaption class="w-75 pl-3"><%= tweet.content %></figcaption>
+          </figure>
+          <div class="d-flex justify-content-around">
+            <div>
+              <% if user_signed_in? %>
+                <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id } %>
+                <% if pre_like %>
+                  <%= link_to image_tag('https://www.pngfind.com/pngs/m/78-781747_leave-a-reply-cancel-reply-twitter-like-icon.png', width: 20, height: 20), tweet_like_path(tweet, pre_like), method: :delete %>
+                <% else %>
+                  <%= link_to image_tag('https://www.iconfinder.com/data/icons/twitter-21/512/166_Heart_Love_Like_Twitter-512.png', width: 20, height: 20), tweet_likes_path(tweet), method: :post %>
+                <% end %>
+                <%= tweet.likes.count %> <!--Likes-->
+              <% end %>
+            </div>
+            <div>
+                <%= link_to image_tag('https://w7.pngwing.com/pngs/497/636/png-transparent-computer-icons-scalable-graphics-apple-icon-format-twitter-retweet-icon-miscellaneous-angle-text-thumbnail.png', width:20, height: 20), retweet_tweet_path(tweet.id), method: :post %>
+                <%= tweet.likes.count %> <!--RT-->
+            </div>
+            <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <br>
 
 <%= paginate @tweets %>
-<%= link_to 'New Tweet', new_tweet_path %>
+

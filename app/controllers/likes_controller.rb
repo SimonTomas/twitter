@@ -4,13 +4,13 @@ class LikesController < ApplicationController
 
     def create
         @tweet.likes.create(user_id: current_user.id)
-        redirect_to tweet_path(@tweet)
+        redirect_to root_path
     end
 
     def destroy
         if already_liked?
             @like.destroy
-            redirect_to tweet_path(@tweet)
+            redirect_to root_path
         end
     end
 

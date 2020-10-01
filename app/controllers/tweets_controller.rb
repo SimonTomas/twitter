@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy, :retweet]
   before_action :authenticate_user!, except: [:index]
 
   # GET /tweets
@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'El Tweet fue creado exitosamente.' }
+        format.html { redirect_to root_path, notice: 'El Tweet fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }
@@ -57,13 +57,12 @@ class TweetsController < ApplicationController
   end
 
   def retweet
-    original_tweet = Tweet.find(params[:id])
     @retweet = Tweet.new(
       user_id: current_user.id,
-      content: original_tweet.content
+      content: @tweet.content
     )
       if @retweet.save
-        redirect_to tweet_path, notice: 'Retwitteado'
+        redirect_to root_path, notice: 'Retwitteado'
       else
         redirect_to root_path, alert: 'No se pudo retwittear'
       end
@@ -87,7 +86,7 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content, :user_id)
+      params.require(:tweet).permit(:content, :user_id, :created_at)
     end
 
     def retweet_params
