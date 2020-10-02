@@ -12,12 +12,19 @@
     </div>
   <% end %>
  
-<div class="card col-6 offset-3">
+  <div class="card col-6 offset-3 d-flex">
 
-  <div class="p-5">
-    <%= form.text_area(:content, placeholder: 'Escribe tu tweet...', class: 'form-control mb-2') %>
-    <%= form.submit(class: 'btn btn-primary') %>
+  <div class="d-flex p-3">
+    <figure class="">
+      <img src="<%= current_user.profile_picture %>" style="width: 60px; height: 60px; border-radius: 50%">
+    </figure>
+
+    <div class="ml-auto w-75">
+      <%= form.text_area(:content, placeholder: 'Escribe tu tweet...', class: 'form-control mb-2') %>
+      <%= form.submit(class: 'btn btn-primary') %>
+    </div>
+    </div>
+
   </div>
 
-</div>
 <% end %>
