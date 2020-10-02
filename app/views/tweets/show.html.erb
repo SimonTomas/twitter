@@ -1,13 +1,24 @@
-<h3>Likes</h3>
-<p>
-  <% @tweet.likes.each do |like| %>
-    <%= avatar_for(like.user, 70, 70) %>
-  <% end %>
-</p>
-
-<% if current_user.id == @tweet.user_id %>
-  <%= link_to 'Editar', edit_tweet_path(@tweet) %> |
-  <%= link_to 'Borrar', tweet_path(@tweet.id), method: :delete %> |
+<% if @tweet.likes.count == 0 %>
+<h3 class="text-center font-weight-bold">No tienes likes <span><i class="fas fa-sad-tear text-primary"></i></span></h3>
+<% else %>
+<h3 class="text-center font-weight-bold">Mira quien le ha dado like a tu tweet! <span><i class="fas fa-smile text-primary"></i></span></h3>
 <% end %>
 
-<%= link_to 'Volver', tweets_path %>
+<div class="card p-4">
+  <% @tweet.likes.each do |like| %>
+    <div class="text-center">
+      <%= avatar_for(like.user, 70, 70) %>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center mt-3">
+
+  <%= link_to 'Volver', tweets_path %>
+
+  <% if current_user.id == @tweet.user_id %> |
+    <%= link_to 'Editar', edit_tweet_path(@tweet) %> |
+    <%= link_to 'Borrar', tweet_path(@tweet.id), method: :delete %>
+  <% end %>
+
+</div>
