@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <figure class="d-flex align-items-center">
-                  <img src="<%= tweet.user.profile_picture %>" style="width:60px; height:60px; border-radius:50%">
+                  <%= avatar_for(tweet.user, 40, 40) %>
                   <figcaption class="w-75 pl-3"><%= tweet.content %></figcaption>
                 </figure>
                 <div class="d-flex justify-content-around">

@@ -1,7 +1,7 @@
 <h3>Likes</h3>
 <p>
   <% @tweet.likes.each do |like| %>
-    <img src="<%= like.user.profile_picture %>", style="width:60px; height:60px">
+    <%= avatar_for(like.user, 70, 70) %>
   <% end %>
 </p>
 

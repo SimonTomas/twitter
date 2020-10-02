@@ -16,7 +16,7 @@
 
   <div class="d-flex p-3">
     <figure class="">
-      <img src="<%= current_user.profile_picture %>" style="width: 60px; height: 60px; border-radius: 50%">
+      <%= avatar_for(current_user, 70, 70)%>
     </figure>
 
     <div class="ml-auto w-75">
