@@ -6,7 +6,8 @@
 </p>
 
 <% if current_user.id == @tweet.user_id %>
-<%= link_to 'Editar', edit_tweet_path(@tweet) %> |
-<%= link_to 'Borrar', tweet_path(@tweet.id), method: :delete %> |
+  <%= link_to 'Editar', edit_tweet_path(@tweet) %> |
+  <%= link_to 'Borrar', tweet_path(@tweet.id), method: :delete %> |
 <% end %>
+
 <%= link_to 'Volver', tweets_path %>
