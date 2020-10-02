@@ -57,13 +57,16 @@ class TweetsController < ApplicationController
   end
 
   def retweet
-    render 'error'
+
+    @retweet = @tweet
+    @tweet = Tweet.new
     
-    # if @retweet.save
-    #   render :retweet, notice: 'Retwitteado'
-    # else
-    #   redirect_to root_path, alert: 'No se pudo retwittear'
-    # end
+    if @retweet.save
+      render :retweet
+    else
+      render 'error'
+    end
+
   
   end
 
@@ -88,7 +91,4 @@ class TweetsController < ApplicationController
       params.require(:tweet).permit(:content, :user_id)
     end
 
-    def retweet_params
-      params.require(:retweet).permit(:retweet_id, :content).merge(user_id: current_user.id)
-    end
 end

@@ -1,32 +1,11 @@
 <div class="card col-6 offset-3 p-5">
     <h2>Retwittear</h2>
     <p>
-    <%= @tweet.content %>
+    <%= @retweet.content %>
     del tweet número 
-    <%= @tweet.id %>
+    <%= @retweet.id %>
     </p>
-    <div class="card p-5 mt-3">
-        <h2>Nuevo Tweet</h2>
-        <%= form_with(model: @retweet, local: true) do |form| %>
-            <% if @retweet.errors.any? %>
-                <div id="error_explanation">
-                    <h2><%= pluralize(@retweet.errors.count, "error") %> prohibited this @retweet from being saved:</h2>
-                    <ul>
-                        <% @retweet.errors.full_messages.each do |message| %>
-                            <li><%= message %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
-
-            <div class="field">
-                <%= form.label :contenido %>
-                <%= form.text_field :content %>
-            </div>
-            <div class="actions">
-                <%= form.submit %>
-            </div>
-        <% end %>
-    </div>
+    <div class="container">
+    <%= render 'form' %>
 </div>
 <%= link_to 'Volver', tweets_path %>
