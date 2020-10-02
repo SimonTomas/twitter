@@ -56,17 +56,17 @@ class TweetsController < ApplicationController
     end
   end
 
-  def retweet
-    @retweet = Tweet.new(retweet_params)
+  # def retweet
+  #   @retweet = Tweet.new(retweet_params)
     
-    if @retweet.save
-      render :retweet, notice: 'Retwitteado'
-    else
-      redirect_to root_path, alert: 'No se pudo retwittear'
-    end
+  #   if @retweet.save
+  #     render :retweet, notice: 'Retwitteado'
+  #   else
+  #     redirect_to root_path, alert: 'No se pudo retwittear'
+  #   end
 
   
-  end
+  # end
 
   # DELETE /tweets/1
   # DELETE /tweets/1.json
@@ -89,7 +89,7 @@ class TweetsController < ApplicationController
       params.require(:tweet).permit(:content, :user_id)
     end
 
-    def retweet_params
-      params.require(:retweet).permit(:retweet_id, :content).merge(user_id: current_user.id)
-    end
+    # def retweet_params
+    #   params.require(:retweet).permit(:retweet_id, :content).merge(user_id: current_user.id)
+    # end
 end
