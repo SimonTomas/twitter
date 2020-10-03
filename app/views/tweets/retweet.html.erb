@@ -1,11 +1,6 @@
 <div class="card col-6 offset-3 p-5">
     <h2>Retwittear</h2>
-    <p>
-    <%= @retweet.content %>
-    del tweet número 
-    <%= @retweet.id %>
-    </p>
-    <div class="container">
     <%= render 'form' %>
+
 </div>
 <%= link_to 'Volver', tweets_path %>
