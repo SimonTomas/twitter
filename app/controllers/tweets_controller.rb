@@ -56,20 +56,22 @@ class TweetsController < ApplicationController
     end
   end
 
-  # def retweet
+  def retweet
 
-  #   @retweet = Tweet.new(
-  #     user_id: current_user.id,
-  #     content: @tweet.content,
-  #     retweet_id: @tweet.id
-  #   )
-  #     if @retweet.save
-  #       redirect_to root_path, notice: 'Retwiteado!'
-  #     else
-  #       redirect_to root_path, alert: 'No se pudo retwitear'
-  #     end
+    render 'error'
 
-  # end
+    # @retweet = Tweet.new(
+    #   user_id: current_user.id,
+    #   content: @tweet.content,
+    #   retweet_id: @tweet.id
+    # )
+    #   if @retweet.save
+    #     redirect_to root_path, notice: 'Retwiteado!'
+    #   else
+    #     redirect_to root_path, alert: 'No se pudo retwitear'
+    #   end
+
+  end
 
   # DELETE /tweets/1
   # DELETE /tweets/1.json
