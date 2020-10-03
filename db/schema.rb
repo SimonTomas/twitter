@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_235009) do
+ActiveRecord::Schema.define(version: 2020_10_03_022307) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "friend_id"
