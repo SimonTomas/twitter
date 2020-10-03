@@ -4,7 +4,6 @@ class Tweet < ApplicationRecord
     has_many :likes, dependent: :destroy
     has_many :linking_users, :through => :likes, :source => :user
     # validates :retweet_id, uniqueness: { scope: :user_id }
-    has_many :retweets, class_name: 'Tweet', foreign_key: 'retweet_id'
-    belongs_to :source_tweet, optional: true, inverse_of: :retweets, class_name: 'Tweet', foreign_key: 'retweet_id'
+    has_many :retweets, foreign_key: 'retweet_id'
     paginates_per 50
 end
