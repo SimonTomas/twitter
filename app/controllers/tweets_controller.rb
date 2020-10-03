@@ -5,7 +5,12 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.order(created_at: :desc).page(params[:page])
+
+    if params[:q]
+    @tweets = Tweet.where("content LIKE ?", "%#{params[:q]}%").order(created_at: :desc).page(params[:page])
+    else
+      @tweets = Tweet.order(created_at: :desc).page(params[:page])
+    end
     @tweet = Tweet.new
   end
 
@@ -90,11 +95,7 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content, :user_id, :tweet_id)
-    end
-
-    def count_retweets
-
+      params.require(:tweet).permit(:content, :user_id, :tweet_id, :content)
     end
 
 end

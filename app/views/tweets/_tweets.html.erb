@@ -23,7 +23,7 @@
                   </div>
                   <div>
                       <%= link_to image_tag('retweet.png', size: "25x15"), retweet_tweet_path(tweet.id) %>
-                      <%#= tweet.likes.count %> <!--RT-->
+                      <%= count_retweets(tweet) %>
                   </div>
                   <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id) %>
                 </div>
