@@ -30,14 +30,13 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
-    # @tweet.retweet_id = @tweet.id
 
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to root_path, notice: 'El Tweet fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @tweet }
       else
-        format.html { render :new }
+        format.html { redirect_to root_path, alert: 'El tweet no pudo ser creado' }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
@@ -57,20 +56,20 @@ class TweetsController < ApplicationController
     end
   end
 
-  def retweet
+  # def retweet
 
-    @retweet = Tweet.new(
-      user_id: current_user.id,
-      content: @tweet.content,
-      retweet_id: @tweet.id
-    )
-      if @retweet.save
-        redirect_to root_path, notice: 'Retwiteado!'
-      else
-        redirect_to root_path, alert: 'No se pudo retwitear'
-      end
+  #   @retweet = Tweet.new(
+  #     user_id: current_user.id,
+  #     content: @tweet.content,
+  #     retweet_id: @tweet.id
+  #   )
+  #     if @retweet.save
+  #       redirect_to root_path, notice: 'Retwiteado!'
+  #     else
+  #       redirect_to root_path, alert: 'No se pudo retwitear'
+  #     end
 
-  end
+  # end
 
   # DELETE /tweets/1
   # DELETE /tweets/1.json
@@ -90,7 +89,7 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content, :user_id, :retweet_id)
+      params.require(:tweet).permit(:content, :user_id)
     end
 
     # def retweet_params
