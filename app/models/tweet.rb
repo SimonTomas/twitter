@@ -3,7 +3,7 @@ class Tweet < ApplicationRecord
     validates :content, presence: true, length: { maximum: 140 }
     has_many :likes, dependent: :destroy
     has_many :linking_users, :through => :likes, :source => :user
-    
-    has_many :retweets, class_name: "Tweet" foreign_key: 'retweet_id'
+
+    # has_many :retweets, class_name: "Tweet" foreign_key: 'retweet_id'
     paginates_per 50
 end

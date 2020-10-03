@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_022307) do
+ActiveRecord::Schema.define(version: 2020_10_02_164839) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "friend_id"
@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 2020_10_03_022307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "retweet_id"
-    t.index ["retweet_id"], name: "index_tweets_on_retweet_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
