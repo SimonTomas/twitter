@@ -4,4 +4,6 @@ class Tweet < ApplicationRecord
     has_many :likes, dependent: :destroy
     has_many :linking_users, :through => :likes, :source => :user
     paginates_per 50
+    has_many :tweets
+    belongs_to :tweets, optional: true
 end
