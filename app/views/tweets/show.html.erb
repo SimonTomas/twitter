@@ -4,9 +4,9 @@
 <h3 class="text-center font-weight-bold">Mira quien le ha dado like al tweet! <span><i class="fas fa-smile text-primary"></i></span></h3>
 <% end %>
 
-<div class="card p-4">
+<div class="card p-4 flex-row-reverse justify-content-center">
   <% @tweet.likes.each do |like| %>
-    <div class="text-center">
+    <div class="text-center p-2">
       <%= avatar_for(like.user, 70, 70) %>
     </div>
   <% end %>
