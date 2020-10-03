@@ -30,6 +30,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
+    # @tweet.retweet_id = @tweet.id
 
     respond_to do |format|
       if @tweet.save
@@ -58,16 +59,17 @@ class TweetsController < ApplicationController
 
   def retweet
 
-    @retweet = @tweet
-    @tweet = Tweet.new
-    
-    if @retweet.save
-      render :retweet
-    else
-      render 'error'
-    end
+    @retweet = Tweet.new(
+      user_id: current_user.id,
+      content: @tweet.content,
+      retweet_id: @tweet.id
+    )
+      if @retweet.save
+        redirect_to root_path, notice: 'Retwiteado!'
+      else
+        redirect_to root_path, alert: 'No se pudo retwitear'
+      end
 
-  
   end
 
   # DELETE /tweets/1
@@ -88,7 +90,11 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content, :user_id)
+      params.require(:tweet).permit(:content, :user_id, :retweet_id)
     end
+
+    # def retweet_params
+    #   params.require(:retweet).permit(:retweet_id, :content).merge(user_id: current_user.id)
+    # end
 
 end
