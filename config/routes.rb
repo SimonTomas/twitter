@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     end
   end
   
+    post 'user/:user_id', to: 'friends#create', as: 'friend_create'
+    delete 'user/:user_id', to: 'friends#destroy', as: 'friend_destroy'
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
