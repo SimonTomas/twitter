@@ -13,7 +13,7 @@
                 </figure>
                 <div class="d-flex justify-content-around">
                   <div>
-                    <% if user_signed_in? %>
+                    <% if user_signed_in? && current_user.id != tweet.user.id %>
                       <% pre_follow = current_user.friends.find { |friend| friend.friend_id == tweet.user.id } %>
                       <% if pre_follow %>
                         <%= link_to 'Dejar de seguir', friend_destroy_path(tweet.user.id), method: :delete %>

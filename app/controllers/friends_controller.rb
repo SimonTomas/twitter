@@ -11,7 +11,7 @@ class FriendsController < ApplicationController
 
     def destroy
         if already_follow?
-            @friendship.destroy
+            @friends.destroy
             redirect_to root_path
         end
     end
@@ -22,8 +22,8 @@ class FriendsController < ApplicationController
     end
 
     def find_friend
-        @friends = current_user.friends
-        @friendship = @friends.find_by(id: @friends)
+        @friendship = current_user.friends
+        @friends = @friendship.find_by(id: @friendship)
     end
 
     def already_follow?
