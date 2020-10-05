@@ -60,6 +60,7 @@
  }
  .nav_guest_text{
      color: white;
+     font-size: 14px;
  }
  .nav_guest_text:hover{
      text-decoration: none;
