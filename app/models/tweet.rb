@@ -7,8 +7,10 @@ class Tweet < ApplicationRecord
     has_many :tweets
     belongs_to :tweets, optional: true
 
-    # scope :tweets_for_me, ->(current_user) { Tweet.where(
-    #     user_id: current_user.friends
-    # ) }
+    scope :tweets_for_me, ->(users_list) { where(
+        user_id: users_list.map do |friend|
+            friend.friend_id
+        end
+    ) }
             
 end
