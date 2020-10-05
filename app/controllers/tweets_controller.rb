@@ -8,10 +8,11 @@ class TweetsController < ApplicationController
 
     if params[:q]
       @tweets = Tweet.where("content LIKE ?", "%#{params[:q]}%").order(created_at: :desc).page(params[:page])
-    elsif current_user.nil?
-      @tweets = Tweet.order(created_at: :desc).page(params[:page])
+    # elsif current_user.nil?
     else
-      @tweets = Tweet.tweets_for_me(current_user.friends).order(created_at: :desc).page(params[:page])
+      @tweets = Tweet.order(created_at: :desc).page(params[:page])
+    # else
+    #   @tweets = Tweet.tweets_for_me(current_user.friends).order(created_at: :desc).page(params[:page])
     end
 
     @tweet = Tweet.new
@@ -66,17 +67,20 @@ class TweetsController < ApplicationController
   end
 
   def retweet
-    @retweet = Tweet.new(
-      user_id: current_user.id,
-      content: @tweet.content,
-      tweet_id: @tweet.id
-    )
 
-    if @retweet.save
-      redirect_to root_path, notice: 'Has retwiteado exitosamente!'
-    else
-      redirect_to root_path, alert: 'Ya lo has retwiteado!'
-    end
+    render 'retweet'
+    # @retweet = Tweet.new(
+    #   user_id: current_user.id,
+    #   content: @tweet.content,
+    #   tweet_id: @tweet.id
+    # )
+    
+    # if @retweet.save
+    #   render 'retweet'
+    #   # redirect_to root_path, notice: 'Has retwiteado exitosamente!'
+    # else
+    #   redirect_to root_path, alert: 'Ya lo has retwiteado!'
+    # end
 
   end
 

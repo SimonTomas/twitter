@@ -10,16 +10,59 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ * require_tree .
  *= require_self
  */
 
  body{
+    font-family: 'Open Sans', sans-serif;
      background-color: beige;
      margin: 0px;
      padding: 0px;
+     padding-top: 66px
  }
 
- .nav_search{
-     border-radius: 20px;
+ .nav-search{
+     border-radius: 11px;
+     border: 2px solid white;
+     ;
+ }
+
+ .nav-text{
+     font-size: 13px;
+     color:white !important;
+ }
+
+ input#search{
+     background-image: url('https://cdn.icon-icons.com/icons2/1105/PNG/512/loupe_78956.png');
+     background-repeat: no-repeat;
+     background-size: contain;
+     text-indent: 25px;
+     margin-bottom: 5px;
+ }
+
+ input#search:focus{
+    background-image: none; 
+ }
+
+ .submit-btn{
+     background-color: rgb(75, 197, 219);
+     border: 2px solid rgba(255,255,255,0);
+     border-radius: 2em;
+     padding: 0 15px;
+     color: #ffffff;
+     transition: all 0.3s;
+     text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+ }
+ .submit-btn:hover{
+     border-color: rgba(255,255,255,1);
+     font-weight: bold;
+ }
+ .nav_guest_text{
+     color: white;
+ }
+ .nav_guest_text:hover{
+     text-decoration: none;
+     color: white;
+     font-weight: bold;
  }

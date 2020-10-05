@@ -1,23 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/"><%=image_tag('logo-twitter.png', size: "50x40")%></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
             <li class="nav-item d-flex align-items-center">
-            <a href="#"><%= avatar_for(current_user, 25, 25) %></a>
+            <a href="/"><%= avatar_for(current_user, 40, 40) %></a>
             </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle mr-3 nav-text font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= current_user.username.capitalize %>
                     </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         
                             <li class="dropdown-item">
-                                <%= link_to 'Mi Perfil'%>
+                                <%= link_to 'Mi Perfil', root_path %>
                             </li>
                             <div class="dropdown-divider"></div>
                             <li class="dropdown-item">
@@ -31,8 +30,8 @@
                 </li>
             </ul>
             <%= form_tag(root_path, method: 'get', class: 'd-flex') do %>
-                <%= text_field_tag :q, nil, placeholder: 'Buscar tweet...', class:'mr-3', style:'border-radius:20px' %>
-                <%= submit_tag 'Buscar' %>
+                <%= text_field_tag :q, nil, placeholder: 'Buscar tweets...', class:'mr-3 nav-search', id:'search' %>
+                <%= submit_tag 'Buscar', class: 'submit-btn' %>
             <% end %>
         </div>
     </div>
