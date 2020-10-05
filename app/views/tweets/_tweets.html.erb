@@ -9,7 +9,15 @@
             <div class="card-body">
                 <figure class="d-flex align-items-center">
                   <%= avatar_for(tweet.user, 50, 50) %>
-                  <figcaption class="w-75 pl-3"><%= tweet.content %></figcaption>
+                  <figcaption class="w-75 pl-3">
+                    <% tweet.content.split.each do |word| %>
+                      <% if word.start_with?('#') %>
+                        <%= link_to word, root_path(q: word) %>
+                      <% else %>
+                        <%= word %>
+                      <% end %>
+                    <% end %>
+                  </figcaption>
                 </figure>
                 <div class="d-flex justify-content-around">
                   <div>

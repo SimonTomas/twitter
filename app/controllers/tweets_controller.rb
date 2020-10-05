@@ -77,7 +77,6 @@ class TweetsController < ApplicationController
       redirect_to root_path, alert: 'Ya lo has retwiteado!'
     end
 
-
   end
 
   # DELETE /tweets/1
