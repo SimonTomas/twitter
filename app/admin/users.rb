@@ -6,7 +6,7 @@ ActiveAdmin.register User do
 		column 'Nombre de Usuario', :username
 
 		column 'Cantidad de Usuarios Seguidos' do |user|
-
+			user.friends.count
 		end
 
 		column 'Cantidad de Tweets' do |user|

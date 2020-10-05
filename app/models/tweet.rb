@@ -6,4 +6,9 @@ class Tweet < ApplicationRecord
     paginates_per 50
     has_many :tweets
     belongs_to :tweets, optional: true
+
+    # scope :tweets_for_me, ->(current_user) { Tweet.where(
+    #     user_id: current_user.friends
+    # ) }
+            
 end
