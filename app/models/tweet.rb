@@ -12,5 +12,15 @@ class Tweet < ApplicationRecord
             friend.friend_id
         end
     ) }
+
+    def retweets
+        retweet_count = Tweet.group(:tweet_id).count
+        retweet_count.each do |key, value|
+            if self.id == key
+                return value
+            end
+        end
+        return 0
+    end
             
 end

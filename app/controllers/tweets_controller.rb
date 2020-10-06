@@ -1,21 +1,25 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy, :retweet]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :news]
 
   # GET /tweets
   # GET /tweets.json
   def index
-
+    @tweet = Tweet.new
     if params[:q]
       @tweets = Tweet.where("content LIKE ?", "%#{params[:q]}%").order(created_at: :desc).page(params[:page])
-    elsif current_user.nil?
-      @tweets = Tweet.order(created_at: :desc).page(params[:page])
-    else
+      elsif current_user.nil?
+        @tweets = Tweet.order(created_at: :desc).page(params[:page])
+      else
       @tweets = Tweet.tweets_for_me(current_user.friends).or(Tweet.where("user_id = ?", current_user.id)).order(created_at: :desc).page(params[:page])
     end
+  end
 
-    @tweet = Tweet.new
+  def news
+    tweets = Tweet.last(50)
+    hash = tweets.map{|tweet| { "id" => tweet.id, "content" => tweet.content, "user_id" => tweet.user_id, "like_count" => tweet.likes.count, "retweets_count" => tweet.retweets, "retweeted_from" => tweet.tweet_id }}
 
+    render json: hash
   end
 
   # GET /tweets/1
