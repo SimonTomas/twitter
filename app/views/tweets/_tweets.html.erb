@@ -27,9 +27,9 @@
                     <% if user_signed_in? && current_user.id != tweet.user.id %>
                       <% pre_follow = current_user.friends.find { |friend| friend.friend_id == tweet.user.id } %>
                       <% if pre_follow %>
-                        <%= link_to image_tag('remove_followee.png', size: "20x20"), friend_destroy_path(tweet.user.id), method: :delete %>
+                        <%= link_to image_tag('remove_followee.png', size: "20x20"), friend_destroy_path(tweet.user.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', method: :delete %>
                       <% else %>
-                        <%= link_to image_tag('add_followee.png', size: "20x20"), friend_create_path(tweet.user.id), method: :post %>
+                        <%= link_to image_tag('add_followee.png', size: "20x20"), friend_create_path(tweet.user.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', method: :post %>
                       <% end %>
                     <% end %>
                   </div>
