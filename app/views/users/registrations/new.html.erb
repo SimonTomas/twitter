@@ -1,43 +1,56 @@
 <h2 class="text-center font-weight-bold">Crea tu cuenta</h2>
+<hr class="container">
 
-<div class="d-flex justify-content-center">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6">
+      <figure>
+        <%= image_tag('logo-twitter.png', class: 'registration_img') %>
+      </figure>
+    </div>
+    <div class="col-6">
+      <div class="card d-flex justify-content-center p-5 font-weight-bold">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "users/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label 'Nombre de Usuario' %>
-      <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: 'Ingrese su nombre' %>
-    </div>
-    
-    <div class="field">
-      <%= f.label 'Foto de Perfil' %>
-      <%= f.text_field :profile_picture, autofocus: true, autocomplete: "profile_picture" %>
-    </div>
+          <div class="field form-group">
+            <%= f.label 'Nombre de Usuario' %>
+            <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: 'Ingrese su nombre', class:'form-control' %>
+          </div>
+          
+          <div class="field form-group">
+            <%= f.label 'Foto de Perfil' %> <em class="font-weight-light">(Url)</em>
+            <%= f.text_field :profile_picture, autofocus: true, autocomplete: "profile_picture", class:'form-control', placeholder: 'Opcional' %>
+          </div>
 
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Ingrese su email' %>
-    </div>
+          <div class="field form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Ingrese su email', class:'form-control' %>
+          </div>
 
-    <div class="field">
-      <%= f.label 'Contraseña' %>
-      <% if @minimum_password_length %>
-      <em>(Mínimo <%= @minimum_password_length %> carácteres)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Ingrese su contraseña' %>
-    </div>
+          <div class="field form-group">
+            <%= f.label 'Contraseña' %>
+            <% if @minimum_password_length %>
+            <em class="font-weight-light">(Mínimo <%= @minimum_password_length %> carácteres)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Ingrese su contraseña', class:'form-control' %>
+          </div>
 
-    <div class="field">
-      <%= f.label 'Reingrese su contraseña' %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Ingrese su contraseña' %>
-    </div>
+          <div class="field form-group">
+            <%= f.label 'Confirmar contraseña' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Ingrese nuevamente su contraseña', class:'form-control' %>
+          </div>
 
-    <div class="actions">
-      <%= f.submit "Crear Cuenta" %>
-    </div>
+          <div class="actions">
+            <%= f.submit "Crear Cuenta", class:'submit-btn-registration' %>
+          </div>
 
-    <div class="actions">
-      <%= link_to 'Volver', root_path %>
+          <div class="actions mt-3">
+            <%= link_to 'Volver', root_path %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
+

@@ -14,17 +14,17 @@
  
   <div class="card col-6 offset-3 d-flex">
 
-  <div class="d-flex p-3">
-    <figure class="">
-      <%= avatar_for(current_user, 70, 70)%>
-    </figure>
+    <div class="d-flex p-3">
+      <figure class="">
+        <%= avatar_for(current_user, 70, 70)%>
+      </figure>
 
-    <div class="ml-auto w-75">
-      <%= form.text_area(:content, placeholder: 'Escribe tu tweet...', class: 'form-control mb-2') %>
-      <%= form.submit(class: 'btn btn-primary') %>
+      <div class="ml-auto w-75">
+        <%= form.text_area(:content, placeholder: 'Escribe tu tweet...', class: 'form-control mb-2') %>
+        <%= button_tag(class: 'btn-submit-post') do %>
+          Crear Tweet
+        <% end %>
+      </div>
     </div>
-    </div>
-
   </div>
-
 <% end %>

@@ -1,30 +1,43 @@
 <h2 class="text-center font-weight-bold">Ingresar a la cuenta</h2>
+<hr class="container">
 
-<div class="d-flex justify-content-center">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Ingrese su email' %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6">
+      <figure>
+        <%= image_tag('logo-twitter.png', class: 'registration_img') %>
+      </figure>
     </div>
+    <div class="col-6">
+      <div class="card d-flex justify-content-center p-5 font-weight-bold">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Ingrese su email', class:'form-control' %>
+          </div>
 
-    <div class="field">
-      <%= f.label :contraseña %>
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Ingrese su contraseña' %>
-    </div>
+          <div class="field form-group">
+            <%= f.label :contraseña %>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Ingrese su contraseña', class:'form-control' %>
+          </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label 'Recordarme' %>
+          <% if devise_mapping.rememberable? %>
+            <div class="field form-group font-weight-light">
+              <%= f.check_box :remember_me %>
+              <%= f.label 'Recordarme' %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Ingresar", class:'submit-btn-registration' %>
+          </div>
+
+          <div class="actions mt-3">
+            <%= link_to 'Volver', root_path %>
+          </div>
+
+        <% end %>
       </div>
-    <% end %>
-
-    <div class="actions">
-      <%= f.submit "Ingresar" %>
     </div>
-
-    <div class="actions">
-      <%= link_to 'Volver', root_path %>
-    </div>
-  <% end %>
+  </div>
 </div>

@@ -22,17 +22,17 @@
      padding-top: 66px
  }
 
+ /* NAVBAR */
  .nav-search{
-     border-radius: 11px;
+     border-radius: 9px;
      border: 2px solid white;
-     ;
+     outline: none;
+     font-size: 0.8em;
  }
-
  .nav-text{
      font-size: 13px;
      color:white !important;
  }
-
  input#search{
      background-image: url('https://cdn.icon-icons.com/icons2/1105/PNG/512/loupe_78956.png');
      background-repeat: no-repeat;
@@ -40,11 +40,9 @@
      text-indent: 25px;
      margin-bottom: 5px;
  }
-
  input#search:focus{
     background-image: none; 
  }
-
  .submit-btn{
      background-color: rgb(75, 197, 219);
      border: 2px solid rgba(255,255,255,0);
@@ -55,8 +53,8 @@
      text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
  }
  .submit-btn:hover{
-     border-color: rgba(255,255,255,1);
-     font-weight: bold;
+    background-color: rgb(61, 162, 180);
+     
  }
  .nav_guest_text{
      color: white;
@@ -67,3 +65,61 @@
      color: white;
      font-weight: bold;
  }
+
+ .nav-search-placeholder{
+     align-items: baseline;
+ }
+
+ /* Registration_user_view */
+ .registration_img{
+     width: 100%;
+ }
+
+ .submit-btn-registration{
+    width: 180px;
+    height: 60px;
+    background: transparent;
+    border: 1px solid #91C9FF;
+    outline: none;
+    transition: 0.5s ease-in-out;
+ }
+
+ .submit-btn-registration:hover {
+    transition: 0.5s ease-in-out;
+    background: #d2e4f5;
+  }
+
+/* Delete User View */
+
+.submit-btn-delete{
+    width: 180px;
+    height: 60px;
+    background: transparent;
+    border: 1px solid #ff9191;
+    outline: none;
+    transition: 0.5s ease-in-out;
+ }
+
+ .submit-btn-delete:hover {
+    transition: 0.5s ease-in-out;
+    background: #f5d2d2;
+  }
+
+/* Index view */
+
+.btn-submit-post{
+    background-color: rgb(75, 197, 219);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    transition: all 0.5s;
+}
+
+.btn-submit-post:hover{
+    background-color: rgb(61, 162, 180);
+    transition: all 0.5s;
+    transition-timing-function: ease;
+}
+
+  

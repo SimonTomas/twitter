@@ -13,7 +13,7 @@
                     <%= link_to 'Iniciar Sesión', new_user_session_path, class: 'nav_guest_text' %>
                 </li>
             </ul>
-            <%= form_tag(root_path, method: 'get', class: 'd-flex') do %>
+            <%= form_tag(root_path, method: 'get', class: 'd-flex nav-search-placeholder') do %>
                 <%= text_field_tag :q, nil, placeholder: 'Buscar tweets...', class:'mr-3 nav-search', id: 'search' %>
                 <%= submit_tag 'Buscar', class: 'submit-btn' %>
             <% end %>

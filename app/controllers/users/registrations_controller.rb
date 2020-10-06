@@ -10,9 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    current_user.friends.create(
+      friend_id: current_user.id
+    )
+  end
 
   # GET /resource/edit
   # def edit
