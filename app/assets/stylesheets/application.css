@@ -122,4 +122,15 @@
     transition-timing-function: ease;
 }
 
+.distance_of_posts_in_time{
+    font-size: 0.8em;
+    color: #3a3a3a;
+    align-self: center;
+}
+
+.distance_of_posts_in_time:hover{
+    text-decoration: none;
+    color: #111111;
+    font-weight: bold;
+}
   

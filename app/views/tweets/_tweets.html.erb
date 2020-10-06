@@ -46,7 +46,7 @@
                       <%= link_to image_tag('retweet.png', size: "25x15"), retweet_tweet_path(tweet.id) %>
                       <%= count_retweets(tweet) %>
                   </div>
-                  <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id) %>
+                  <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id), class: 'distance_of_posts_in_time' %>
                 </div>
             </div>
           </div>
