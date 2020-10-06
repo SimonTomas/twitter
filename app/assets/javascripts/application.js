@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(
+      {container:'body', trigger: 'hover', placement:"bottom"}
+    );   
+  });
