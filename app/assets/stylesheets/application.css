@@ -16,13 +16,18 @@
 
  body{
     font-family: 'Open Sans', sans-serif;
-     background-color: beige;
+     background-color: rgb(233, 245, 245);
      margin: 0px;
      padding: 0px;
      padding-top: 66px
  }
 
  /* NAVBAR */
+
+.nav-shadow{
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,0.5);
+}
+
  .nav-search{
      border-radius: 9px;
      border: 2px solid white;
