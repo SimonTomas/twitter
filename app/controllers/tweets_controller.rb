@@ -25,7 +25,7 @@ class TweetsController < ApplicationController
     date_1 = params[:fecha1].to_date
     date_2 = params[:fecha2].to_date.end_of_day
     date_tweets = Tweet.created_between(date_1, date_2)
-    pretty_tweets = helpers.transform_to_hash(date_tweets)
+    pretty_tweets = helpers.transform_to_hash_with_date(date_tweets)
     render json: pretty_tweets
   end
 
