@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy, :retweet]
-  before_action :authenticate_user!, except: [:index, :news]
+  before_action :authenticate_user!, except: [:index, :news, :date]
+  skip_before_action :verify_authenticity_token, only:[:create_api_tweet]
 
   # GET /tweets
   # GET /tweets.json
@@ -56,7 +57,24 @@ class TweetsController < ApplicationController
         format.html { redirect_to root_path, notice: 'El Tweet fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @tweet }
       else
-        format.html { redirect_to root_path, alert: 'El tweet no pudo ser creado' }
+        format.html { redirect_to root_path, alert: 'El Tweet no pudo ser creado' }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_api_tweet
+    @tweet = Tweet.new(
+      content: params[:content],
+      user_id: current_user.id
+    )
+
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to root_path, notice: 'El Tweet fue creado exitosamente.' }
+        format.json { render json: @tweet, status: :created, location: @tweet }
+      else
+        format.html { redirect_to root_path, alert: 'El Tweet no pudo ser creado' }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
