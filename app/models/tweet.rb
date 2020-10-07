@@ -13,6 +13,10 @@ class Tweet < ApplicationRecord
         end
     ) }
 
+    scope :created_between, ->(start_date, end_date) {where(
+        "(created_at) >= ? AND (created_at) <= ?", start_date, end_date
+    ) }
+
     def retweets
         retweet_count = Tweet.group(:tweet_id).count
         retweet_count.each do |key, value|

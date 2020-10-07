@@ -17,9 +17,16 @@ class TweetsController < ApplicationController
 
   def news
     tweets = Tweet.last(50)
-    hash = tweets.map{|tweet| { "id" => tweet.id, "content" => tweet.content, "user_id" => tweet.user_id, "like_count" => tweet.likes.count, "retweets_count" => tweet.retweets, "retweeted_from" => tweet.tweet_id }}
+    pretty_tweets = helpers.transform_to_hash(tweets)
+    render json: pretty_tweets
+  end
 
-    render json: hash
+  def date
+    date_1 = params[:fecha1].to_date
+    date_2 = params[:fecha2].to_date.end_of_day
+    date_tweets = Tweet.created_between(date_1, date_2)
+    pretty_tweets = helpers.transform_to_hash(date_tweets)
+    render json: pretty_tweets
   end
 
   # GET /tweets/1
