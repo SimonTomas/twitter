@@ -1,0 +1,47 @@
+<% if user_signed_in? %>    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-3">
+                <div class="card shadow rounded sticky-top card-profile-user">
+                    <img src="<%= current_user.profile_picture %>" alt="" class="w-100">
+                    <div class="text-center font-weight-bold mt-2">
+                        <%= current_user.username.capitalize %>
+                    </div>
+                    <hr class="border-primary">
+                    <div>
+                        <p class="px-3"><strong>Tweets: </strong><%= current_user.tweets.count %></p>
+                        <hr class="border-primary px-5">
+                        <p class="px-3"><strong>Seguidos: </strong> <%= current_user.friends.count %></p>
+                        <hr class="border-primary">
+                        <p class="px-3"><strong>Seguidores:</strong> <%= current_user.followers %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <h1 class="text-center font-weight-bold py-3 profile-title">Últimos tweets</h1>
+                <% if current_user.tweets != 0 %>
+                    <% current_user.tweets.order(created_at: :desc).each do |tweet| %>
+                        <div class="card mt-3 p-3 d-flex">
+                            <div class="container">
+                                <%= tweet.content %>
+                            </div>
+                            <hr>
+                            <div class="d-flex mt-3 justify-content-around">
+                                <div class="d-flex align-items-center">
+                                    <%= image_tag('like.png', size: 20) %>
+                                    <div class="ml-1">
+                                        <%= tweet.likes.count %>
+                                    </div>
+                                </div>
+                                <div style="font-size:0.85em">
+                                    <i class="far fa-clock"></i>
+                                    <%= tweet.created_at.strftime("%B %d, %Y") %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>

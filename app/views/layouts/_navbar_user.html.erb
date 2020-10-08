@@ -15,7 +15,7 @@
                     </a>
                         <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                             <li class="dropdown-item">
-                                <%= link_to 'Mi Perfil', root_path, class: 'nav-dropdown-item' %>
+                                <%= link_to 'Mi Perfil', profile_user_path(current_user.id), class: 'nav-dropdown-item' %>
                             </li>
                             <div class="dropdown-divider border-primary mx-2"></div>
                             <li class="dropdown-item">

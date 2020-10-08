@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     get 'api/news', to: 'tweets#news'
     get 'api/:fecha1/:fecha2', to: 'tweets#date'
     post 'api/tweets/:content', to: 'tweets#create_api_tweet'
-  
+
+    get 'user/:id', to: 'users#show', as: 'profile_user'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
