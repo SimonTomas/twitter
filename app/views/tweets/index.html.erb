@@ -1,38 +1,7 @@
-<% if user_signed_in? %>
-    <div class="row">
-        <div class="col-3">
-            <div class="card mt-5 sticky-top card-index-user">
-                <figure>
-                    <% if current_user.profile_picture.empty? %>
-                        <%= image_tag('avatar_default', style: "width:100%") %>
-                    <% else %>
-                        <img src="<%= current_user.profile_picture %>" alt="" style="width:100%">
-                    <% end %>
-                </figure>
-                <div class="d-flex justify-content-around text-center border-bottom pb-2">
-                    <div>
-                        <p class="font-weight-bold mb-0">Seguidores</p>
-                        <%= current_user.followers(current_user) %>
-                    </div>
-                    <div>
-                        <p class="font-weight-bold mb-0">Seguidos</p>
-                        <%= current_user.friends.count %>
-                    </div>
-                </div>
-                <div class="text-center my-2 d-flex align-self-center">
-                    <%= link_to 'Ver Perfil', profile_user_path(current_user.id), class: 'view-profile-button' %>
-                </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <%= render 'form' %>
-            <%= render 'tweets' %>
-        </div>
-    </div>
-<% else %>
-    <div class="col-8 offset-2">
-        <%= render 'tweets' %>
-    </div>
-<% end %>
+<%= render 'form' if user_signed_in? %>
+
+<%= render 'tweets' %>
+
 <br>
+
 <%= paginate @tweets %>
