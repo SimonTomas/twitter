@@ -9,7 +9,7 @@
     <% @tweets.each do |tweet| %>
       <div class="container d-flex justify-content-center my-3 px-1">
         <div class="card w-75 pt-3">
-          <div class="d-flex py-3 px-0">
+          <div class="d-flex py-3 px-3">
             <div class="ml-2">
               <figure class="text-center">
                 <a href="<%= profile_user_path(tweet.user.id) %>">

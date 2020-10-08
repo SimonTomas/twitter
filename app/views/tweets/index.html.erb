@@ -9,7 +9,9 @@
         </div>
     </div>
 <% else %>
-    <%= render 'tweets' %>
+    <div class="col-8 offset-2">
+        <%= render 'tweets' %>
+    </div>
 <% end %>
 <br>
 <%= paginate @tweets %>
