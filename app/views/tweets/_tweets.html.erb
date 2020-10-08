@@ -12,7 +12,9 @@
               <div class="card-body d-flex py-3 px-0">
                 <div>
                   <figure class="text-center">
+                  <a href="<%= profile_user_path(tweet.user.id) %>">
                     <%= avatar_for(tweet.user, 50, 50) %>
+                  </a>
                     <figcaption class="fs-figcaption font-weight-light mt-3">
                       <%= tweet.user.username.capitalize %>
                     </figcaption>
