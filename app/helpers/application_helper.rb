@@ -8,4 +8,14 @@ module ApplicationHelper
         end
         return @avatar_user
     end
+
+    def avatar_for_navbar(user, width = '', height = '')
+        @avatar = user.profile_picture
+        if @avatar.empty?
+            @avatar_user = image_tag('avatar_default.png', width: width, height: height, class: 'rounded-circle')
+        else
+            @avatar_user = image_tag(user.profile_picture, width: width, height: height, class: 'rounded-circle')
+        end
+        return @avatar_user
+    end
 end
