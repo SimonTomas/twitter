@@ -76,6 +76,19 @@
      align-items: baseline;
  }
 
+ .nav-dropdown-item{
+     color: white;
+ }
+ .nav-dropdown-item:hover{
+    color: white;
+    text-decoration: none;
+}
+
+li.nav-item ul.dropdown-menu li.dropdown-item:hover{
+    background: none;
+    font-weight: bold;
+}
+
  /* Registration_user_view */
  .registration_img{
      width: 100%;
@@ -148,5 +161,5 @@
     // border: 2px solid rgb(98, 228, 233);
     // -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
     // -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
-    box-shadow: -2px 5px 5px 0px rgba(0, 0, 0, 1);
+    box-shadow: -2px 5px 7px 0px rgba(0, 0, 0, 1);
 }

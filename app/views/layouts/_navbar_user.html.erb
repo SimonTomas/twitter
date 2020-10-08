@@ -13,18 +13,17 @@
                     <a class="nav-link dropdown-toggle mr-3 nav-text font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= current_user.username.capitalize %>
                     </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                             <li class="dropdown-item">
-                                <%= link_to 'Mi Perfil', root_path %>
+                                <%= link_to 'Mi Perfil', root_path, class: 'nav-dropdown-item' %>
                             </li>
-                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider border-primary mx-2"></div>
                             <li class="dropdown-item">
-                                <%= link_to 'Opciones', edit_user_registration_path %>
+                                <%= link_to 'Opciones', edit_user_registration_path, class: 'nav-dropdown-item' %>
                             </li>
-                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider border-primary mx-2"></div>
                             <li class="dropdown-item">
-                                <%=link_to 'Salir', destroy_user_session_path, method: :delete %>
+                                <%=link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-dropdown-item' %>
                             </li>
                         </ul>
                 </li>
