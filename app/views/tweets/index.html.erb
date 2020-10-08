@@ -1,7 +1,17 @@
-<%= render 'form' if user_signed_in? %>
-
-<%= render 'tweets' %>
-
+<% if user_signed_in? %>
+    <div class="row">
+        <div class="col-3">
+            <%= render 'index_profile' %>
+        </div>
+        <div class="col-6">
+            <%= render 'form' %>
+            <%= render 'tweets' %>
+        </div>
+    </div>
+<% else %>
+    <div class="col-8 offset-2">
+        <%= render 'tweets' %>
+    </div>
+<% end %>
 <br>
-
 <%= paginate @tweets %>
