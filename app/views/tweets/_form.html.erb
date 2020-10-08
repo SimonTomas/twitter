@@ -1,10 +1,9 @@
-<div class="mt-5">
+<div class="mt-5 mx-0">
   <%= form_with(model: @tweet, local: true) do |form| %>
 
     <% if @tweet.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this @tweet from being saved:</h2>
-
         <ul>
         <% @tweet.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -12,14 +11,11 @@
         </ul>
       </div>
     <% end %>
-  
-    <div class="card col-6 offset-3 d-flex">
-
-      <div class="d-flex p-3">
+    <div class="card d-flex">
+      <div class="d-flex px-3 py-4">
         <figure class="">
           <%= avatar_for(current_user, 70, 70)%>
         </figure>
-
         <div class="ml-auto w-75">
           <%= form.text_area(:content, placeholder: 'Escribe tu tweet...', class: 'form-control mb-2') %>
           <%= button_tag(class: 'btn-submit-post') do %>
