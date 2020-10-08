@@ -102,8 +102,7 @@ class TweetsController < ApplicationController
     )
     
     if @retweet.save
-      # render 'retweet'
-      redirect_to root_path, notice: 'Has retwiteado exitosamente!'
+      redirect_to root_path, notice: 'Has retwiteado exitosamente'
     else
       redirect_to root_path, alert: 'Ya lo has retwiteado!'
     end

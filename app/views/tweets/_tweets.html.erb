@@ -1,62 +1,64 @@
-<% if @tweets.count == 0 && user_signed_in? %>
-  <p class="text-center font-weight-bold display-4">No hay nada que mostrar  <span><i class="fas fa-sad-cry text-primary"></i></span></p>
-  <p class="text-center font-weight-bold">Realiza tu primer tweet o sigue a otros usuarios para ver más contenido!</p>
-<% elsif @tweets.count == 0 %>
-  <p class="text-center font-weight-bold display-4">Aun no hay Tweets  <span><i class="fas fa-sad-cry text-primary"></i></span></p>
-  <p class="text-center font-weight-bold">Regístrate y realiza el primer tweet!</p>
-<% else %>
-  <% @tweets.each do |tweet| %>
-    <div class="container d-flex justify-content-center my-3 px-1">
-        <div class="card col-6 px-3 pt-3">
-            <div class="card-body d-flex py-3 px-0">
-              <div>
-                <figure class="text-center">
-                  <%= avatar_for(tweet.user, 50, 50) %>
-                  <figcaption class="fs-figcaption font-weight-light mt-2">
-                    <%= tweet.user.username.capitalize %>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="w-100 px-3">
-                <div class="h-75 pb-3 text-break">
-                  <% tweet.content.split.each do |word| %>
-                    <% if word.start_with?('#') %>
-                      <%= link_to word, root_path(q: word) %>
-                    <% else %>
-                      <%= word %>
-                    <% end %>
-                  <% end %>
+<div class="mt-5">
+  <% if @tweets.count == 0 && user_signed_in? %>
+    <p class="text-center font-weight-bold display-4">No hay nada que mostrar  <span><i class="fas fa-sad-cry text-primary"></i></span></p>
+    <p class="text-center font-weight-bold">Realiza tu primer tweet o sigue a otros usuarios para ver más contenido!</p>
+  <% elsif @tweets.count == 0 %>
+    <p class="text-center font-weight-bold display-4">Aun no hay Tweets  <span><i class="fas fa-sad-cry text-primary"></i></span></p>
+    <p class="text-center font-weight-bold">Regístrate y realiza el primer tweet!</p>
+  <% else %>
+    <% @tweets.each do |tweet| %>
+      <div class="container d-flex justify-content-center my-3 px-1">
+          <div class="card col-6 px-3 pt-3">
+              <div class="card-body d-flex py-3 px-0">
+                <div>
+                  <figure class="text-center">
+                    <%= avatar_for(tweet.user, 50, 50) %>
+                    <figcaption class="fs-figcaption font-weight-light mt-3">
+                      <%= tweet.user.username.capitalize %>
+                    </figcaption>
+                  </figure>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <% if user_signed_in? && current_user.id != tweet.user.id %>
-                      <% pre_follow = current_user.friends.find { |friend| friend.friend_id == tweet.user.id } %>
-                      <% if pre_follow %>
-                        <%= link_to image_tag('remove_followee.png', size: "20x20"), friend_destroy_path(tweet.user.id), :data => {:toggle=>"tooltip"}, 'data-placement' => 'top', class:'tag-tooltip', title: 'Dejar de seguir', method: :delete %>
+                <div class="w-100 px-3 ml-3">
+                  <div class="h-75 pb-3 text-break">
+                    <% tweet.content.split.each do |word| %>
+                      <% if word.start_with?('#') %>
+                        <%= link_to word, root_path(q: word) %>
                       <% else %>
-                        <%= link_to image_tag('add_followee.png', size: "20x20"), friend_create_path(tweet.user.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', class:'tag-tooltip', title: 'Añadir Amigo', method: :post %>
+                        <%= word %>
                       <% end %>
                     <% end %>
-                  <div>
-                    <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id if user_signed_in? } %>
-                    <% if pre_like %>
-                      <%= link_to image_tag('like.png', size: "20x20"), tweet_like_path(tweet, pre_like), method: :delete %>
-                    <% else %>
-                      <%= link_to image_tag('dislike.png', size: "20x20"), tweet_likes_path(tweet), method: :post %>
-                    <% end %>
-                    <%= tweet.likes.count %>
                   </div>
-                  <div>
-                      <%= link_to image_tag('retweet.png', size: "25x15"), retweet_tweet_path(tweet.id) %>
-                      <%= tweet.retweets %>
-                  </div>
-                  <div>
-                  <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id), class: 'distance_of_posts_in_time' %>
+                  <div class="d-flex justify-content-between">
+                      <% if user_signed_in? && current_user.id != tweet.user.id %>
+                        <% pre_follow = current_user.friends.find { |friend| friend.friend_id == tweet.user.id } %>
+                        <% if pre_follow %>
+                          <%= link_to image_tag('remove_followee.png', size: "20x20"), friend_destroy_path(tweet.user.id), :data => {:toggle=>"tooltip"}, 'data-placement' => 'top', class:'tag-tooltip', title: 'Dejar de seguir', method: :delete %>
+                        <% else %>
+                          <%= link_to image_tag('add_followee.png', size: "20x20"), friend_create_path(tweet.user.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', class:'tag-tooltip', title: 'Seguir', method: :post %>
+                        <% end %>
+                      <% end %>
+                    <div>
+                      <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id if user_signed_in? } %>
+                      <% if pre_like %>
+                        <%= link_to image_tag('like.png', size: "20x20"), tweet_like_path(tweet, pre_like), method: :delete %>
+                      <% else %>
+                        <%= link_to image_tag('dislike.png', size: "20x20"), tweet_likes_path(tweet), method: :post %>
+                      <% end %>
+                      <%= tweet.likes.count %>
+                    </div>
+                    <div>
+                        <%= link_to image_tag('retweet.png', size: "25x15"), retweet_tweet_path(tweet.id) %>
+                        <%= tweet.retweets %>
+                    </div>
+                    <div>
+                    <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id), class: 'distance_of_posts_in_time' %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>  

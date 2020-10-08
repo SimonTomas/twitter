@@ -6,6 +6,7 @@ class Tweet < ApplicationRecord
     paginates_per 50
     has_many :tweets
     belongs_to :tweets, optional: true
+    validates :tweet_id, uniqueness: { scope: :user_id }, allow_nil: true
 
     scope :tweets_for_me, ->(users_list) { where(
         user_id: users_list.map do |friend|
