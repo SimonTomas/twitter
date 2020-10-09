@@ -1,7 +1,7 @@
 <div class="card mt-5 sticky-top card-index-user">
     <figure>
         <% if current_user.profile_picture.empty? %>
-            <%= image_tag('avatar_default', style: "width:100%") %>
+            <%= image_tag('avatar_default.png', style: "width:100%") %>
         <% else %>
             <img src="<%= current_user.profile_picture %>" alt="" style="width:100%">
         <% end %>
