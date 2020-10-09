@@ -19,8 +19,17 @@
 
   <body>
     <%= render '/layouts/navbar' %>
-    <p class="notice" id="notice"><%= notice %></p>
-    <p class="alert" id="alert"><%= alert %></p>
+    <% if flash[:notice] %>
+      <div class="alert alert-success text-center">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:notice]%>
+      </div>
+     <% elsif flash[:alert] %>
+      <div class="alert alert-danger text-center">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:alert]%>
+      </div>
+    <% end %>
     <%= yield %>
     <%= render '/layouts/footer'%>
 
