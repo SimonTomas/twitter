@@ -16,10 +16,13 @@
 
  body{
     font-family: 'Open Sans', sans-serif;
-     background-color: rgb(233, 245, 245);
-     margin: 0px;
-     padding: 0px;
-     padding-top: 66px
+    background-color: rgb(233, 245, 245);
+    margin: 0px;
+    padding: 0px;
+    padding-top: 66px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
  }
 
  /* NAVBAR */
@@ -221,7 +224,6 @@ li.nav-item ul.dropdown-menu li.dropdown-item:hover{
 
 footer{
     box-shadow: 0px -2px 3px -1px rgba(0, 0, 0, 0.5);
-    // position: fixed;
-    // bottom: 0px;
-    // width: 100%;
+    margin-top: auto;
+    height: 50px;
 }
